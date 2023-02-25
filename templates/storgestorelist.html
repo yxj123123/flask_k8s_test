@@ -1,0 +1,123 @@
+{%  extends 'base.html' %}
+{% block title %}
+    <a class="navbar-brand" href="#"> 商店库存信息 </a>
+{% endblock %}
+
+{% block content %}
+        <div class="content">
+        <h4 class="title">商店库存信息</h4>
+        <div class="toolbar">
+
+            <!--        Here you can write extra buttons/actions for the toolbar              -->
+            <form method="post">
+                查询方式
+                <select name="info" required>
+                    <option value="storgestoreid">库存编号</option>
+                </select>
+                <input type="text" name="date" autocomplete="off" required>
+                <input type="submit" name="submit" value="查询">
+            </form>
+
+        </div>
+        {% if info == 'storgestoreid'%}
+            <div class="material-datatables">
+                <table id="datatables" class="table table-striped table-no-bordered table-hover"
+                       style="width:100%;cellspacing:0">
+                    <thead>
+                    <tr>
+						<th>库存编号</th>
+                        <th>商品编号</th>
+                        <th>商品名称</th>
+                        <th>商品产地</th>
+                        <th>商品单价</th>
+                        <th>入库时间</th>
+                        <th>商品数量</th>
+                        <th class="disabled-sorting text-right">操作</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                        {%if current_user.staffworkplace==storgestores.storgestoreid %}
+                                <td>{{ storgestores.id }}</td>
+                                <td>{{ storgestores.storgestoregoodid }}</td>
+                                 <td>{{ storgestores.storgename.storgename }}</td>
+                                 <td>{{ storgestores.storgename.storgeproduce }}</td>
+                                 <td>{{ storgestores.storgename.storgevalue }}</td>
+                                 <td>{{ storgestores.storgestoretime }}</td>
+                                 <td>{{ storgestores.storgestorenumber }}</td>
+                                {% if current_user.satffype=="售货员" %}
+                                <td class="text-right">
+                                    <form method="post" >
+                                        <a href="{{url_for('auth.storgestore_sale',storgestoreid=storgestores.id) }}"
+                                           class="btn btn-simple btn-info btn-icon like">售卖</a>
+                                    </form>
+                                </td>
+                                {% elif current_user.stafftype=="商店经理"%}
+                                 <td class="text-right">
+                                            <form  method="post" action="{{ url_for('auth.storgestore_delete',storgestoreid=storgestores.id) }}">
+                                                <input name="delete" type="submit" value="清理库存" onclick="return confirm('确认清理该库存？')" class="btn btn-simple btn-danger btn-icon remove">
+                                            </form>
+                                        </td>
+                                {% endif %}
+                        {% endif %}
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        {% else %}
+
+                <div class="material-datatables">
+                    <table id="datatables" class="table table-striped table-no-bordered table-hover"
+                           style="width:100%;cellspacing:0">
+                        <thead>
+                        <tr>
+                            <th>库存编号</th>
+                            <th>商品编号</th>
+                            <th>商品名称</th>
+                            <th>商品产地</th>
+                            <th>商品单价</th>
+                            <th>入库时间</th>
+                            <th>商品数量</th>
+                            <th class="disabled-sorting text-right">操作</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for storgestore in storgestores %}
+                        <tr>
+                            {%if current_user.staffworkplace==storgestore.storgestoreid %}
+                                <td>{{ storgestore.id }}</td>
+                                <td>{{ storgestore.storgestoregoodid }}</td>
+                                <td>{{ storgestore.storgename.storgename }}</td>
+                                <td>{{ storgestore.storgename.storgeproduce }}</td>
+                                 <td>{{ storgestore.storgename.storgevalue }}</td>
+                                <td>{{ storgestore.storgestoretime }}</td>
+                                <td>{{ storgestore.storgestorenumber }}</td>
+                                {% if current_user.stafftype=="售货员" %}
+                                    <td class="text-right">
+                                        <form  method="post">
+                                            <a href="{{url_for('auth.storgestore_sale',storgestoreid=storgestore.id) }}"
+                                               class="btn btn-simple btn-info btn-icon like">售卖</a>
+                                        </form>
+                                    </td>
+                                {% elif current_user.stafftype=="商店经理" %}
+                                     <td class="text-right">
+                                           <form  method="post" action="{{ url_for('auth.storgestore_delete',storgestoreid=storgestore.id) }}">
+                                               <input name="delete" type="submit" value="清理库存" onclick="return confirm('确认清理该库存？')" class="btn btn-simple btn-danger btn-icon remove">
+                                           </form>
+                                     </td>
+                                {% endif %}
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+
+                    </table>
+                </div>
+
+
+        {% endif %}
+    </div>
+{% endblock %}

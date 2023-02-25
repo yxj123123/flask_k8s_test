@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block title %}
+    <a class="navbar-brand" href="#"> 商品配送 </a>
+{% endblock %}
+{% block content %}
+<div class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<form id="allInputsFormValidation" class="form-horizontal"  method="post" >
+						<div class="content">
+							<h4 class="title">商品配送</h4>
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">
+										商品编号<span style="color:red"></span>
+									</label>
+									<div class="col-sm-6">
+										<label class="col-sm-2 control-label">
+											<span style="color:black">{{storge.id}}</span>
+										</label>
+									</div>
+								</div>
+							</fieldset>
+
+								<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">
+										商品名称<span style="color:red"></span>
+									</label>
+									<div class="col-sm-6">
+										<label class="col-sm-2 control-label">
+											<span style="color:black">{{storge.storgename}}</span>
+										</label>
+									</div>
+								</div>
+							</fieldset>
+
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">
+										商品产地<span style="color:red"></span>
+									</label>
+									<div class="col-sm-6">
+										<label class="col-sm-2 control-label">
+											<span style="color:black">{{storge.storgeproduce}}</span>
+										</label>
+								    </div>
+								<div/>
+							</fieldset>
+
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">
+										商品单价<span style="color:red"></span>
+									</label>
+									<div class="col-sm-6">
+										<label class="col-sm-2 control-label">
+											<span style="color:black">{{storge.storgevalue}}</span>
+										</label>
+									</div>
+								</div>
+							</fieldset>
+
+							<fieldset>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">
+										商品数量<span style="color:red">*</span>
+									</label>
+									<div class="col-sm-6">
+										<input class="form-control" type="text" name="requestnumber" required="required" aria-required="true" autocomplete="off" >
+									</div>
+								</div>
+							</fieldset>
+
+
+
+						</div>
+						<div class="card-footer text-center">
+							<input type="submit" name="submit" class="btn btn-info btn-fill" value="配送">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

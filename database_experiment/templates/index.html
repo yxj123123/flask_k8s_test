@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% block title %}
+    <a class="navbar-brand" href="#"> 连锁商店管理系统 </a>
+{% endblock %}
+{% block div %}
+<div class="content" style="background: url({{ url_for('static',filename='背景.jpg') }})"></div>
+{% endblock %}
+{% block content %}
+    {% if current_user.is_authenticated  %}
+        <div  class="col-md-12">
+            <div class="col-md-6" id="container"  style="height: 300px"></div>
+            <div class="col-md-6" id="sex" style="height: 300px"></div>
+            <div style="text-align:center;" >
+                <h2 style="margin-bottom:60px;font-family: cursive;font-size:-webkit-xxx-large;">
+                    欢迎使用连锁商店管理系统
+                </h2>
+            </div>
+
+        </div>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+    <script type="text/javascript">
+<!--        var dom = document.getElementById("container");-->
+<!--        var myChart = echarts.init(dom);-->
+<!--        var app = {};-->
+
+<!--        app.title = '环形图';-->
+
+<!--        var option = {-->
+<!--            tooltip: {-->
+<!--                trigger: 'item',-->
+<!--                formatter: "{a} <br/>{b}: {c} ({d}%)"-->
+<!--            },-->
+<!--            color: ['#AF7DCC', '#FFD83D'],-->
+<!--            legend: {-->
+<!--                orient: 'horizontal',-->
+<!--                x: 'left',-->
+<!--                data: ['在职', '离职']-->
+<!--            },-->
+<!--            series: [{-->
+<!--                name: '员工比例',-->
+<!--                type: 'pie',-->
+<!--                radius: ['30%', '70%'],-->
+<!--                avoidLabelOverlap: false,-->
+<!--                label: {-->
+<!--                    normal: {-->
+<!--                        show: false,-->
+<!--                        position: 'center'-->
+<!--                    },-->
+<!--                    emphasis: {-->
+<!--                        show: true,-->
+<!--                        textStyle: {-->
+<!--                            fontSize: '30',-->
+<!--                            fontWeight: 'bold'-->
+<!--                        }-->
+<!--                    }-->
+<!--                },-->
+<!--                labelLine: {-->
+<!--                    normal: {-->
+<!--                        show: false-->
+<!--                    }-->
+<!--                },-->
+<!--                data: [{-->
+<!--                    value: {{ nowtrue|length }},-->
+<!--                    name: '在职'-->
+<!--                },-->
+<!--                    {-->
+<!--                        value: {{ nowfalse|length }},-->
+<!--                        name: '离职'-->
+<!--                    }-->
+<!--                ]-->
+<!--            }]-->
+<!--        };-->
+<!--        if (option && typeof option === "object") {-->
+<!--            myChart.setOption(option, true);-->
+<!--        }-->
+    </script>
+
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+    <script type="text/javascript">
+<!--			var dom = document.getElementById("sex");-->
+<!--			var myChart = echarts.init(dom);-->
+<!--			var app = {};-->
+
+<!--			app.title = '环形图';-->
+
+<!--			var option = {-->
+<!--				tooltip: {-->
+<!--					trigger: 'item',-->
+<!--					formatter: "{a} <br/>{b}: {c} ({d}%)"-->
+<!--				},-->
+<!--				color:['#93D8A9','#FFB99D'],-->
+<!--				legend: {-->
+<!--					orient: 'horizontal',-->
+<!--					x: 'left',-->
+<!--					data: ['男', '女']-->
+<!--				},-->
+<!--				series: [{-->
+<!--					name: '男女比例',-->
+<!--					type: 'pie',-->
+<!--					radius: ['30%', '70%'],-->
+<!--					avoidLabelOverlap: false,-->
+<!--					label: {-->
+<!--						normal: {-->
+<!--							show: false,-->
+<!--							position: 'center'-->
+<!--						},-->
+<!--						emphasis: {-->
+<!--							show: true,-->
+<!--							textStyle: {-->
+<!--								fontSize: '30',-->
+<!--								fontWeight: 'bold'-->
+<!--							}-->
+<!--						}-->
+<!--					},-->
+<!--					labelLine: {-->
+<!--						normal: {-->
+<!--							show: false-->
+<!--						}-->
+<!--					},-->
+<!--					data: [{-->
+<!--							value: {{ men|length }},-->
+<!--							name: '男'-->
+<!--						},-->
+<!--						{-->
+<!--							value: {{ women|length }},-->
+<!--							name: '女'-->
+<!--						}-->
+<!--					]-->
+<!--				}]-->
+<!--			};-->
+<!--			if(option && typeof option === "object") {-->
+<!--				myChart.setOption(option, true);-->
+<!--			}-->
+		</script>
+
+    {% else %}
+        <div  class="col-md-12">
+        <div style="text-align:center;" >
+                <h2 style="margin:60px 0 60px;font-family: cursive;font-size:-webkit-xxx-large;">
+                    欢迎使用连锁商店管理系统
+                </h2>
+                <h2 style="margin:60px 0 60px;font-family: cursive;">
+                    请先登录或注册
+                </h2>
+            </div>
+        </div>
+
+    {% endif %}
+{% endblock %}

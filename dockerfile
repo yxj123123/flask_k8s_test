@@ -6,10 +6,10 @@ WORKDIR /app
 # 工作目录，这个目录对应于镜像内的工作目录，后面的所有涉及到路径的操作都可以
 # 使用WORKDIR的相对路径来指定
 
-COPY requirements.txt requirements.txt
-# 拷贝requirements.txt 到 镜像中/app/requirements.txt
-
-RUN pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+COPY requirements.txt /tmp/requirements.txt
+#将requirements.txt文件拷贝到 /tmp/requirements.txt
+RUN ["pip", "install", "-r", "/tmp/requirements.txt"]
+#运行安装包的指令
 # 安装pip包
 COPY . .
 # 将当前文件中的目录复制到/app目录下

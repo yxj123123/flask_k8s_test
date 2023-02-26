@@ -1,5 +1,7 @@
-FROM python:3.9       # 基础镜像，python3.9
-#MAINTAINER Zhao    # 镜像作者信息
+FROM python:3.9       
+# 基础镜像，python3.9
+#MAINTAINER Zhao    
+# 镜像作者信息
 WORKDIR /app
 # 工作目录，这个目录对应于镜像内的工作目录，后面的所有涉及到路径的操作都可以
 # 使用WORKDIR的相对路径来指定

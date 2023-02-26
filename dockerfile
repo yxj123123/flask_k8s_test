@@ -8,7 +8,7 @@ WORKDIR /app
 
 COPY requirements.txt /tmp/requirements.txt
 #将requirements.txt文件拷贝到 /tmp/requirements.txt
-RUN ["pip", "install", "-r", "/tmp/requirements.txt"]
+RUN ["pip", "install", "-r", "/tmp/requirements.txt","-i","https://pypi.tuna.tsinghua.edu.cn/simple"]
 #运行安装包的指令
 # 安装pip包
 COPY . .
